@@ -41,7 +41,9 @@ export function BlogCard({
               featured ? "h-full min-h-[300px]" : "h-[240px]"
             } hover:scale-105 transition-transform duration-300`}
           />
-          <Badge className="absolute top-4 left-4">{category}</Badge>
+          <div className="relative p-4 bg-card rounded-lg shadow-md">
+            <Badge className="absolute top-4 left-4">{category.name}</Badge>
+          </div>
         </div>
 
         <div className={`${featured ? "md:w-1/2" : ""}`}>
@@ -61,7 +63,7 @@ export function BlogCard({
             </p>
           </CardContent>
 
-          <CardFooter className="flex items-center justify-between">
+          <CardFooter className="flex items-center justify-between pt-5">
             <div className="flex items-center gap-2">
               <Avatar className="w-8 h-8">
                 <AvatarImage src={author.avatar} />

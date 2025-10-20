@@ -6,19 +6,31 @@ import { Newsletter } from "@/app/components/Newsletter";
 import { Tabs, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
 import { BlogCardDTO } from "@/dtos/BlogCardDTO";
 import { fetchBlogCards } from "@/services/blogServices";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export async function HomePage() {
+export function HomePage() {
+  const [blogPosts, setBlogPosts] = useState<BlogCardDTO[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<BlogCardDTO[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const blogPosts: BlogCardDTO[] = await fetchBlogCards();
+  useEffect(() => {
+    const loadPosts = async () => {
+      const data = await fetchBlogCards();
+      setBlogPosts(data);
+    };
+    loadPosts();
+  }, []); // only fetch once on mount
 
-  const filteredPosts =
-    selectedCategory === "all"
-      ? blogPosts
-      : blogPosts.filter(
-          (post) => post.category.toLowerCase() === selectedCategory
-        );
+  useEffect(() => {
+    if (selectedCategory === "all") {
+      setFilteredPosts(blogPosts);
+    } else {
+      const filtered = blogPosts.filter(
+        (post) => post.category.name.toLowerCase() === selectedCategory
+      );
+      setFilteredPosts(filtered);
+    }
+  }, [selectedCategory, blogPosts]); // run when category or posts change
 
   return (
     <main className="container mx-auto px-4 py-8">

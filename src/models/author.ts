@@ -14,7 +14,7 @@ export async function getAllAuthor() {
 
   const author = await client.from("author").select();
 
-  return author;
+  return author.data;
 }
 
 export async function getAuthorById(id: string) {
@@ -22,5 +22,5 @@ export async function getAuthorById(id: string) {
 
   const author = await client.from("author").select().eq("id", id).single();
 
-  return author;
+  return author.data;
 }
