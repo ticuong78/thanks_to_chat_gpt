@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { blogPosts } from "@/data/blogData";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { BlogCard } from "@/components/BlogCard";
+import { blogPosts } from "@/models/post";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/app/components/ui/avatar";
+import { Button } from "@/app/components/ui/button";
+import { Card, CardContent } from "@/app/components/ui/card";
+import { Badge } from "@/app/components/ui/badge";
+import { BlogCard } from "@/app/components/BlogCard";
 import {
   ArrowLeft,
   Mail,
@@ -16,29 +20,31 @@ import {
   Twitter,
   Linkedin,
 } from "lucide-react";
+import { getAuthorById } from "@/models/author";
 
 export function AuthorPage() {
   const router = useRouter();
-  const { authorName } = useParams();
+  const { authorId } = useParams();
   const [author, setAuthor] = useState<any>(null);
   const [authorPosts, setAuthorPosts] = useState<any[]>([]);
 
   useEffect(() => {
+    if (!authorId) return;
+
+    const author = getAuthorById(authorId.toString());
+
     // Find posts by this author
-    const posts = blogPosts.filter(
-      (post) =>
-        post.author.name.toLowerCase().replace(/\s+/g, "-") === authorName
-    );
+    const posts = blogPosts.filter((post) => post.author_id === authorId);
 
     if (posts.length > 0) {
-      setAuthor(posts[0].author);
+      setAuthor(author);
       setAuthorPosts(posts);
     }
 
     window.scrollTo(0, 0);
-  }, [authorName]);
+  }, [authorId]);
 
-  if (!author) {
+  if (!author || !authorId) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
         <h1 className="text-4xl mb-4">Author Not Found</h1>

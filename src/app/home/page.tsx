@@ -1,14 +1,17 @@
 "use client";
 
-import { BlogCard } from "@/components/BlogCard";
-import { FeaturedSection } from "@/components/FeaturedSection";
-import { Newsletter } from "@/components/Newsletter";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { blogPosts } from "@/data/blogData";
+import { BlogCard } from "@/app/components/BlogCard";
+import { FeaturedSection } from "@/app/components/FeaturedSection";
+import { Newsletter } from "@/app/components/Newsletter";
+import { Tabs, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
+import { BlogCardDTO } from "@/dtos/BlogCardDTO";
+import { fetchBlogCards } from "@/services/blogServices";
 import { useState } from "react";
 
-export function HomePage() {
+export async function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  const blogPosts: BlogCardDTO[] = await fetchBlogCards();
 
   const filteredPosts =
     selectedCategory === "all"

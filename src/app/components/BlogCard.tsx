@@ -6,24 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Clock, Heart, MessageCircle } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useRouter } from "next/navigation";
-
-interface BlogCardProps {
-  id: number;
-  title: string;
-  excerpt: string;
-  author: {
-    name: string;
-    avatar?: string;
-    initials: string;
-  };
-  category: string;
-  date: string;
-  readTime: string;
-  image: string;
-  likes?: number;
-  comments?: number;
-  featured?: boolean;
-}
+import { BlogCardDTO } from "@/dtos/BlogCardDTO";
 
 export function BlogCard({
   id,
@@ -37,7 +20,7 @@ export function BlogCard({
   likes = 0,
   comments = 0,
   featured = false,
-}: BlogCardProps) {
+}: BlogCardDTO) {
   const router = useRouter();
 
   return (

@@ -1,0 +1,71 @@
+id,name,description,category_id
+1,Artificial Intelligence,"AI fundamentals, models, and automation.",1
+2,Machine Learning,"Algorithms, model training, and supervised learning.",1
+3,Deep Learning,"Neural networks, CNNs, RNNs, and transformers.",1
+4,Automation,"Automating tasks with AI or scripting.",1
+5,Threat Detection,"Detecting and mitigating cyber threats using AI or analytics.",2
+6,Ransomware,"Malware that encrypts data for ransom.",2
+7,Incident Response,"Processes for detecting, responding, and recovering from security incidents.",2
+8,Phishing,"Email and social engineering attacks and countermeasures.",2
+9,Threat Intelligence,"Collecting and analyzing threat data to predict and prevent attacks.",2
+10,Zero Trust,"Security model assuming no implicit trust in users or systems.",5
+11,Access Control,"Identity, permission, and session management.",5
+12,Network Architecture,"Design and segmentation of secure networks.",5
+13,Cloud Security Posture Management,"Tools and practices for securing cloud infrastructure.",3
+14,Identity and Access Management,"Policies and systems for managing user identities.",3
+15,DevSecOps,"Integrating security in CI/CD pipelines.",7
+16,Secure Coding,"Writing software that avoids common vulnerabilities.",7
+17,Static Analysis,"Automated code scanning and security analysis.",7
+18,Penetration Testing,"Ethical hacking techniques to discover vulnerabilities.",4
+19,Bug Bounty,"Reward-based vulnerability disclosure programs.",4
+20,Cyber Ethics,"Ethical responsibility and conduct in cybersecurity.",4
+21,Data Encryption,"Protecting data with symmetric and asymmetric cryptography.",6
+22,Data Governance,"Managing data quality, privacy, and compliance (GDPR).",6
+23,Cloud Compliance,"Adhering to security standards in cloud environments.",3
+24,Container Security,"Securing Docker and Kubernetes workloads.",21
+25,Kubernetes,"Managing containerized applications in clusters.",21
+26,Docker,"Building and deploying applications in containers.",21
+27,Microservices,"Service-based architecture design.",20
+28,Serverless,"Cloud computing model without managing infrastructure.",10
+29,Blockchain Security,"Smart contract auditing and crypto-asset protection.",9
+30,DeFi,"Decentralized finance protocols and attacks.",9
+31,IoT Security,"Protecting Internet of Things devices and networks.",11
+32,5G Networks,"Emerging 5G technology and its security implications.",11
+33,Quantum Cryptography,"Encryption methods resistant to quantum attacks.",12
+34,Quantum Algorithms,"Quantum computing techniques and frameworks.",12
+35,Software Architecture,"Designing scalable, maintainable applications.",20
+36,API Security,"Protecting APIs from abuse, injection, and data leaks.",26
+37,Web Application Security,"Defending against OWASP Top 10 web threats.",26
+38,Mobile Security,"Securing mobile apps and SDK integrations.",15
+39,Cross-Site Scripting,"Common web vulnerability allowing code injection.",26
+40,SQL Injection,"Database injection attacks and mitigations.",26
+41,Ethical AI,"Ensuring fairness, transparency, and accountability in AI systems.",1
+42,Model Explainability,"Understanding and interpreting AI model outputs.",1
+43,Data Privacy,"Protection of personal and organizational information.",6
+44,Data Breach,"Unauthorized data exposure and prevention.",6
+45,SIEM,"Security Information and Event Management platforms.",18
+46,SOAR,"Security Orchestration, Automation, and Response workflows.",24
+47,Digital Forensics,"Analyzing compromised systems to gather evidence.",23
+48,Malware Analysis,"Dissecting malicious code and understanding behaviors.",2
+49,Cryptography,"Mathematics and algorithms for data confidentiality.",6
+50,Network Monitoring,"Tools and practices for observing traffic and anomalies.",5
+51,Threat Hunting,"Proactive search for undetected cyber threats.",18
+52,Cloud Architecture,"Designing resilient, secure cloud systems.",3
+53,Infrastructure as Code,"Automating cloud infrastructure using code templates.",3
+54,Continuous Integration,"Automating build and test processes for developers.",7
+55,Continuous Deployment,"Automating code releases to production.",7
+56,Resilience Engineering,"Designing systems to handle failure gracefully.",20
+57,Performance Optimization,"Improving speed, scalability, and efficiency.",20
+58,Web3,"Decentralized internet technologies built on blockchain.",9
+59,API Development,"Designing, testing, and documenting web APIs.",14
+60,Frontend Engineering,"UI frameworks like React, Next.js, and Vue.",14
+61,Backend Systems,"Building APIs and microservices with Node, Go, or Python.",13
+62,CI/CD,"Automation pipelines integrating testing and deployment.",7
+63,Zero-Day Exploits,"Unpatched vulnerabilities actively exploited.",2
+64,Dark Web Monitoring,"Tracking cybercriminal activities across hidden networks.",2
+65,Authentication,"User identity verification methods like OAuth, SSO, MFA.",5
+66,Passwordless Login,"Next-gen authentication using biometrics or passkeys.",5
+67,Code Review,"Collaborative inspection to improve software security.",7
+68,Security Awareness,"Employee education on phishing and safe digital behavior.",18
+69,Patch Management,"Updating software to close vulnerabilities.",18
+70,API Gateway,"Managing and securing service-to-service communication.",21

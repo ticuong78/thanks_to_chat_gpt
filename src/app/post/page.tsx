@@ -3,13 +3,17 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { blogPosts, BlogPost } from "@/data/blogData";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { Card, CardContent } from "@/components/ui/card";
-import { BlogCard } from "@/components/BlogCard";
-import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
+import { Badge } from "@/app/components/ui/badge";
+import { Button } from "@/app/components/ui/button";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/app/components/ui/avatar";
+import { Separator } from "@/app/components/ui/separator";
+import { Card, CardContent } from "@/app/components/ui/card";
+import { BlogCard } from "@/app/components/BlogCard";
+import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import {
   Clock,
   Calendar,
