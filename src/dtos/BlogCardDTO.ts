@@ -1,12 +1,12 @@
-import { Author } from "@/models/author";
-import { Category } from "@/models/category";
+import { AuthorMeta } from "@/models/author";
+import { CategoryMeta } from "@/models/category";
 
 export interface BlogCardDTO {
   id: number;
   title: string;
   excerpt: string;
-  author: Author;
-  category: Category;
+  author: AuthorMeta;
+  category: CategoryMeta;
   date: string;
   readTime: string;
   image: string;

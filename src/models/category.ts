@@ -6,6 +6,8 @@ export interface Category {
   description?: string;
 }
 
+export type CategoryMeta = Omit<Category, "id">;
+
 export async function getAllCategory() {
   const client = createClient();
 

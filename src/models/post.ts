@@ -1,10 +1,12 @@
-export interface BlogPost {
+export interface BlogPost extends BlogPostMeta, BlogPostContent {
   id: number;
-  title: string;
-  excerpt: string;
-  content: string;
   author_id: string;
   category_id: number;
+}
+
+export interface BlogPostMeta {
+  title: string;
+  excerpt: string;
   date: string;
   readTime: string;
   image: string;
@@ -12,6 +14,10 @@ export interface BlogPost {
   comments?: number;
   featured?: boolean;
   tags_id?: number[];
+}
+
+export interface BlogPostContent {
+  content: string;
 }
 
 export const blogPosts: BlogPost[] = [

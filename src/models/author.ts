@@ -9,6 +9,8 @@ export interface Author {
   role?: string;
 }
 
+export type AuthorMeta = Omit<Author, "id">;
+
 export async function getAllAuthor() {
   const client = createClient();
 
