@@ -7,8 +7,10 @@ import { Tabs, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
 import { BlogCardDTO } from "@/dtos/BlogCardDTO";
 import { fetchBlogCards } from "@/services/blogServices";
 import { useEffect, useState } from "react";
+import { HomePageSkeleton } from "../components/HomePageSkeleton";
 
 export function HomePage() {
+  const [isFetching, setIsFetching] = useState(true);
   const [blogPosts, setBlogPosts] = useState<BlogCardDTO[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<BlogCardDTO[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -17,6 +19,7 @@ export function HomePage() {
     const loadPosts = async () => {
       const data = await fetchBlogCards();
       setBlogPosts(data);
+      setIsFetching(false);
     };
     loadPosts();
   }, []); // only fetch once on mount
@@ -32,6 +35,10 @@ export function HomePage() {
     }
   }, [selectedCategory, blogPosts]); // run when category or posts change
 
+  if (isFetching) {
+    return <HomePageSkeleton />;
+  }
+
   return (
     <main className="container mx-auto px-4 py-8">
       <FeaturedSection
@@ -43,19 +50,46 @@ export function HomePage() {
         date="Oct 18, 2025"
       />
 
-      <div className="mb-8">
+      <div className="mb-8 flex justify-start">
         <Tabs
           value={selectedCategory}
           onValueChange={setSelectedCategory}
-          className="w-full"
+          className="w-full max-w-3xl"
         >
-          <TabsList>
-            <TabsTrigger value="all">All Posts</TabsTrigger>
-            <TabsTrigger value="technology">Technology</TabsTrigger>
-            <TabsTrigger value="lifestyle">Lifestyle</TabsTrigger>
-            <TabsTrigger value="travel">Travel</TabsTrigger>
-            <TabsTrigger value="design">Design</TabsTrigger>
-            <TabsTrigger value="food">Food</TabsTrigger>
+          <TabsList
+            className="
+              flex justify-between gap-2
+              bg-gray-100 rounded-full
+              p-1 shadow-inner
+              overflow-x-auto scrollbar-hide
+            "
+          >
+            {[
+              { value: "all", label: "All Posts" },
+              { value: "networking", label: "Networking" },
+              { value: "javascript", label: "Javascript" },
+              { value: "java", label: "Java" },
+              { value: "devsecops", label: "DevSecOps" },
+              { value: "food", label: "Food" },
+            ].map((tab) => (
+              <TabsTrigger
+                key={tab.value}
+                value={tab.value}
+                className="
+                  flex-1 text-sm font-medium
+                  rounded-full px-4 py-2
+                  transition-all
+                  data-[state=active]:bg-white
+                  data-[state=active]:shadow-sm
+                  data-[state=active]:text-black
+                  data-[state=inactive]:text-gray-600
+                  hover:text-black
+                  cursor-pointer
+                "
+              >
+                {tab.label}
+              </TabsTrigger>
+            ))}
           </TabsList>
         </Tabs>
       </div>

@@ -12,6 +12,49 @@ import { unwrapSingle } from "@/utils/helper/data";
 
 const client = createClient();
 
+export async function fetchBlogCardsByCategory(
+  categoryName: string
+): Promise<BlogCardDTO[]> {
+  const { data, error } = await client
+    .from("post_meta")
+    .select(
+      `
+        id,
+        title,
+        excerpt,
+        date,
+        readTime,
+        image,
+        likes,
+        comments,
+        featured,
+        author:author_id (
+          name,
+          initials,
+          avatar,
+          bio,
+          role
+        ),
+        category:category_id (
+          name,
+          description
+        )
+      `
+    )
+    .eq("category_id.name", categoryName);
+
+  if (error) {
+    console.error("Error fetching posts by category:", error);
+    throw error;
+  }
+
+  if (!data) return [];
+
+  return (data as any[])
+    .filter((item) => item.category?.name) // phòng null
+    .map((item) => item as BlogCardDTO);
+}
+
 // --- 1. Fetch tất cả bài viết kèm tác giả ---
 export async function fetchBlogCards(): Promise<BlogCardDTO[]> {
   const { data, error } = await client.from("post_meta").select(
@@ -70,6 +113,63 @@ export async function fetchFullBlogTagsById(id: number): Promise<BlogTagDTo[]> {
   }));
 }
 
+export async function fetchBlogCardsByAuthor(
+  authorId: string
+): Promise<BlogCardDTO[]> {
+  const { data, error } = await client
+    .from("post_meta")
+    .select(
+      `
+        id,
+        title,
+        excerpt,
+        date,
+        readTime,
+        image,
+        likes,
+        comments,
+        featured,
+        author:author_id(
+          name,
+          initials,
+          avatar,
+          bio,
+          role
+        ),
+        category:category_id(
+          name,
+          description
+        )
+      `
+    )
+    .eq("author_id", authorId); // 🔹 lọc theo tác giả
+
+  if (error) {
+    console.error("Error fetching posts by author:", error);
+    throw error;
+  }
+
+  if (!data) return [];
+
+  return (data as any[]).map((row) => ({
+    id: row.id,
+    title: row.title,
+    excerpt: row.excerpt,
+    date: row.date,
+    readTime: row.readTime,
+    image: row.image,
+    likes: row.likes ?? 0,
+    comments: row.comments ?? 0,
+    featured: row.featured ?? false,
+    author: (Array.isArray(row.author)
+      ? row.author[0]
+      : row.author) as AuthorMeta,
+    category: (Array.isArray(row.category)
+      ? row.category[0]
+      : row.category) as CategoryMeta,
+  }));
+}
+
 export async function fetchFullBlogById(id: number): Promise<BlogPostDTO> {
   const { data, error } = await client
     .from("post_content")
@@ -87,6 +187,7 @@ export async function fetchFullBlogById(id: number): Promise<BlogPostDTO> {
           comments,
           featured,
           author: author_id(
+            id,
             name,
             initials,
             avatar,
@@ -94,6 +195,7 @@ export async function fetchFullBlogById(id: number): Promise<BlogPostDTO> {
             role
           ),
           category: category_id(
+            id,
             name,
             description
           )
@@ -116,6 +218,7 @@ export async function fetchFullBlogById(id: number): Promise<BlogPostDTO> {
   const post_meta: BlogPostWithRelations = {
     ...rawMeta,
     author: author ?? {
+      id: "none",
       name: "Unknown Author",
       initials: "??",
       avatar: null,
@@ -123,6 +226,7 @@ export async function fetchFullBlogById(id: number): Promise<BlogPostDTO> {
       role: null,
     },
     category: category ?? {
+      id: "none",
       name: "Uncategorized",
       description: null,
     },

@@ -1,0 +1,73 @@
+<article>
+  <header>
+    <h1>Kiến trúc lõi và tầng truy cập của mạng 5G: Từ RAN tới Core</h1>
+    <p class="subtitle">Hiểu sâu cách mạng 5G tổ chức tầng truy cập (RAN) và lõi mạng (Core) để đạt tốc độ cao, độ trễ thấp và khả năng mở rộng lớn.</p>
+  </header>
+
+  <section>
+    <h2>1. Tổng quan về 5G và những yêu cầu mới</h2>
+    <p>
+      Mạng 5G không đơn thuần là tăng tốc độ tải xuống. Nó được thiết kế để hỗ trợ ba trụ cột chính: Enhanced Mobile Broadband (eMBB), Massive Machine Type Communications (mMTC), và Ultra-Reliable Low Latency Communications (URLLC). :contentReference[oaicite:1]{index=1}  
+      Để đáp ứng những yêu cầu này — như hàng tỷ thiết bị IoT, xe tự hành, thực tế ảo thời gian thực — kiến trúc mạng phải được thiết kế lại từ tầng truy cập cho tới lõi mạng.
+    </p>
+    <figure>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/5G_Network_Architecture.png" alt="Kiến trúc tổng thể mạng 5G – RAN và Core" />
+      <figcaption>Kiến trúc tổng thể mạng 5G – từ thiết bị người dùng đến mạng lõi.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>2. Tầng truy cập vô tuyến (RAN) và các công nghệ chủ đạo</h2>
+    <p>
+      Tầng truy cập vô tuyến (Radio Access Network – RAN) trong 5G sử dụng công nghệ mới như Millimeter Wave (mmWave), Massive MIMO và nhỏ tế (small-cells) để đạt được tốc độ cao và độ trễ thấp. :contentReference[oaicite:4]{index=4}  
+      Ngoài ra, kiến trúc RAN được hoàn chỉnh hơn bằng cách phân tách các thành phần (disaggregation), sử dụng phần mềm và ảo hóa để linh hoạt hơn.
+    </p>
+    <h3>2.1 Small cells và mmWave</h3>
+    <p>
+      Nhỏ tế cho phép phủ sóng trong đô thị dày đặc hoặc trong nhà, và mmWave cho phép băng thông lớn nhưng tầm phủ ngắn. Đây là sự trade-off: tốc độ vs. vùng phủ.  
+    </p>
+    <h3>2.2 Disaggregated RAN và Cloud-RAN</h3>
+    <p>
+      Kiến trúc như Cloud‑RAN hay disaggregated RAN cho phép các khối xử lý baseband được ảo hóa, tập trung hoặc đặt gần edge, giúp giảm độ trễ và tăng hiệu suất. :contentReference[oaicite:6]{index=6}  
+    </p>
+  </section>
+
+  <section>
+    <h2>3. Kiến trúc lõi mạng (Core Network) của 5G</h2>
+    <p>
+      Lõi mạng 5G (5G Core) là điểm khác biệt lớn so với 4G. Nó sử dụng kiến trúc dịch vụ-hướng (Service-Based Architecture – SBA), tách biệt plane điều khiển (Control Plane) và plane dữ liệu (User Plane) để linh hoạt và mở rộng. :contentReference[oaicite:7]{index=7}  
+    </p>
+    <figure>
+      <img src="https://www.telecomhall.net/wp-content/uploads/2020/05/5G-Core-Network-Architecture.png" alt="Kiến trúc lõi mạng 5G – Service-Based Architecture" />
+      <figcaption>Kiến trúc lõi mạng 5G với các chức năng mạng (Network Functions) kết nối qua giao diện dịch vụ.</figcaption>
+    </figure>
+    <h3>3.1 Chức năng mạng chủ đạo</h3>
+    <p>
+      Một số chức năng mạng (Network Functions – NFs) nổi bật bao gồm:  
+      - AMF (Access & Mobility Function): quản lý truy cập và di động. :contentReference[oaicite:9]{index=9}  
+      - SMF (Session Management Function): quản lý phiên kết nối và đường truyền. :contentReference[oaicite:11]{index=11}  
+      - UPF (User Plane Function): trách nhiệm chuyển tiếp dữ liệu người dùng. :contentReference[oaicite:13]{index=13}  
+    </p>
+    <h3>3.2 Network Slicing và Virtualization</h3>
+    <p>
+      5G hỗ trợ **network slicing** — khả năng chia mạng vật lý thành nhiều mạng logic với các đặc tính riêng phù hợp từng ứng dụng (ví dụ: băng thông lớn, độ trễ cực thấp, thiết bị IoT). :contentReference[oaicite:14]{index=14}  
+      Hơn nữa, kiến trúc mạng lõi tích hợp ảo hóa chức năng mạng (NFV) và kiến trúc đám mây (cloud native) nhằm đạt khả năng mở rộng và linh hoạt cao. :contentReference[oaicite:15]{index=15}  
+    </p>
+  </section>
+
+  <section>
+    <h2>4. Lợi ích chính và thách thức khi triển khai</h2>
+    <p>
+      Lợi ích của 5G bao gồm: tốc độ cao (theo lý thuyết lên tới hàng Gbps), độ trễ thấp (có thể ~1 ms), khả năng kết nối hàng tỷ thiết bị. :contentReference[oaicite:16]{index=16}  
+      Thách thức cũng không nhỏ: chi phí hạ tầng lớn, việc triển khai mmWave và small cells rộng khắp, đảm bảo chất lượng dịch vụ (QoS) và bảo mật khi mạng được ảo hóa sâu.
+    </p>
+    <h3>4.1 Tích hợp legacy và tương thích ngược</h3>
+    <p>
+      Triển khai 5G thường phải kết hợp với mạng 4G (Non Standalone – NSA) trước khi chuyển sang Standalone (SA). Việc quản lý di động giữa các thế hệ mạng, và đảm bảo trải nghiệm liền mạch là bài toán lớn.
+    </p>
+    <h3>4.2 Chi phí và phân phối hạ tầng</h3>
+    <p>
+      Small cells và mmWave yêu cầu mật độ trạm cao hơn rất nhiều so với 4G, dẫn tới chi phí vận hành và bảo trì tăng. Hơn nữa, backhaul và hạ tầng lõi cần đủ mạnh để đáp ứng lưu lượng cực lớn.
+    </p>
+  </section>
+</article>

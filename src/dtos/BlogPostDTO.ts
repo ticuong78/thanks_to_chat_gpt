@@ -1,11 +1,11 @@
-import { AuthorMeta } from "@/models/author";
-import { CategoryMeta } from "@/models/category";
+import { Author, AuthorMeta } from "@/models/author";
+import { Category, CategoryMeta } from "@/models/category";
 import { BlogPostMeta } from "@/models/post";
 import { TagMeta } from "@/models/tag";
 
 export type BlogPostWithRelations = BlogPostMeta & {
-  author: AuthorMeta;
-  category: CategoryMeta;
+  author: Author;
+  category: Category;
 };
 
 export interface BlogPostDTO {

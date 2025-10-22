@@ -32,8 +32,11 @@ export function BlogCard({
     >
       <div className={`${featured ? "md:flex" : ""}`}>
         <div
-          className={`relative ${featured ? "md:w-1/2" : ""} overflow-hidden`}
+          className={`relative ${
+            featured ? "md:w-1/2" : ""
+          } overflow-hidden rounded-lg`}
         >
+          {/* Ảnh */}
           <ImageWithFallback
             src={image}
             alt={title}
@@ -41,9 +44,22 @@ export function BlogCard({
               featured ? "h-full min-h-[300px]" : "h-[240px]"
             } hover:scale-105 transition-transform duration-300`}
           />
-          <div className="relative p-4 bg-card rounded-lg shadow-md">
-            <Badge className="absolute top-4 left-4">{category.name}</Badge>
-          </div>
+
+          {/* Badge nổi trên ảnh */}
+          <Badge
+            className="
+              absolute top-4 left-4
+              bg-black/70 text-white
+              px-3 py-1 text-xs font-semibold
+              rounded-full
+              backdrop-blur-sm
+              shadow-md
+              transition-all duration-200
+              hover:bg-black/100
+            "
+          >
+            {category.name}
+          </Badge>
         </div>
 
         <div className={`${featured ? "md:w-1/2" : ""}`}>

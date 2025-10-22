@@ -27,14 +27,20 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import {
+  fetchBlogCardsByCategory,
   fetchFullBlogById,
   fetchFullBlogTagsById,
 } from "@/services/blogServices";
 import { BlogPostDTO, BlogTagDTo } from "@/dtos/BlogPostDTO";
+import { SinglePostSkeleton } from "@/app/components/SinglePostSkeleton";
+import { BlogCardDTO } from "@/dtos/BlogCardDTO";
+import { BlogCard } from "@/app/components/BlogCard";
 
 export default function SinglePostPage() {
   const { id } = useParams();
   const router = useRouter();
+  const [relatedPosts, setRelatedPosts] = useState<BlogCardDTO[]>([]);
+  const [fetchStatus, setFetchStatus] = useState<boolean | null>(null);
   const [postTag, setPostTag] = useState<BlogTagDTo[]>([]);
   const [post, setPost] = useState<BlogPostDTO | null>(null);
   const [liked, setLiked] = useState(false);
@@ -42,9 +48,20 @@ export default function SinglePostPage() {
 
   useEffect(() => {
     const loadPostAndTag = async () => {
-      const foundPost = await fetchFullBlogById(Number(id));
+      try {
+        const foundPost = await fetchFullBlogById(Number(id));
+        setPost(foundPost);
+
+        const relatedPosts2 = (
+          await fetchBlogCardsByCategory(foundPost.post_meta.category.name)
+        ).filter((item) => item.id !== foundPost.post_id);
+
+        setRelatedPosts(relatedPosts2);
+      } catch {
+        setFetchStatus(true);
+      }
+
       const foundPostTag = await fetchFullBlogTagsById(Number(id));
-      setPost(foundPost);
       setPostTag(foundPostTag);
     };
 
@@ -53,6 +70,10 @@ export default function SinglePostPage() {
   }, [id]);
 
   if (!post) {
+    return <SinglePostSkeleton />;
+  }
+
+  if (fetchStatus === false) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
         <h1 className="text-4xl mb-4">Post Not Found</h1>
@@ -128,13 +149,7 @@ export default function SinglePostPage() {
           <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b">
             <div
               className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition"
-              onClick={() =>
-                router.push(
-                  `/author/${post.post_meta.author.name
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`
-                )
-              }
+              onClick={() => router.push(`/author/${post.post_meta.author.id}`)}
             >
               <Avatar className="w-12 h-12">
                 <AvatarImage src={post.post_meta.author.avatar} />
@@ -276,11 +291,7 @@ export default function SinglePostPage() {
                       variant="outline"
                       size="sm"
                       onClick={() =>
-                        router.push(
-                          `/author/${post.post_meta.author.name
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")}`
-                        )
+                        router.push(`/author/${post.post_meta.author.id}`)
                       }
                     >
                       View All Posts
@@ -356,7 +367,7 @@ export default function SinglePostPage() {
           </Card>
 
           {/* Related Posts */}
-          {/* {relatedPosts.length > 0 && (
+          {relatedPosts.length > 0 && (
             <div className="mb-12">
               <h3 className="text-2xl mb-6">Related Articles</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -365,7 +376,7 @@ export default function SinglePostPage() {
                 ))}
               </div>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </article>
