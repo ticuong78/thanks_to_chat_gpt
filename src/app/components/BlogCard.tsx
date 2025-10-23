@@ -50,7 +50,8 @@ export function BlogCard({
             className="
               absolute top-4 left-4
               bg-black/70 text-white
-              px-3 py-1 text-xs font-semibold
+              px-3 py-1 text-x
+               font-semibold
               rounded-full
               backdrop-blur-sm
               shadow-md
