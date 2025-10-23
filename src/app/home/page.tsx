@@ -9,7 +9,7 @@ import { fetchBlogCards } from "@/services/blogServices";
 import { useEffect, useState } from "react";
 import { HomePageSkeleton } from "../components/HomePageSkeleton";
 
-export function HomePage() {
+export default function HomePage() {
   const [isFetching, setIsFetching] = useState(true);
   const [blogPosts, setBlogPosts] = useState<BlogCardDTO[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<BlogCardDTO[]>([]);
