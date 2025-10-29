@@ -35,6 +35,7 @@ import { BlogPostDTO, BlogTagDTo } from "@/dtos/BlogPostDTO";
 import { SinglePostSkeleton } from "@/app/components/SinglePostSkeleton";
 import { BlogCardDTO } from "@/dtos/BlogCardDTO";
 import { BlogCard } from "@/app/components/BlogCard";
+import ChatWidget from "@/app/components/ChatWidget";
 
 export default function SinglePostPage() {
   const { id } = useParams();
@@ -379,6 +380,19 @@ export default function SinglePostPage() {
           )}
         </div>
       </div>
+
+      {/* Floating chat widget (limit context to this post) */}
+      {post && (
+        <ChatWidget
+          contextType="post"
+          context={{
+            postId: post.post_id,
+            title: post.post_meta.title,
+            author: post.post_meta.author.name,
+            category: post.post_meta.category.name,
+          }}
+        />
+      )}
     </article>
   );
 }

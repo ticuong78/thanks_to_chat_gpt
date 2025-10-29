@@ -8,6 +8,7 @@ import { BlogCardDTO } from "@/dtos/BlogCardDTO";
 import { fetchBlogCards } from "@/services/blogServices";
 import { useEffect, useState } from "react";
 import { HomePageSkeleton } from "../components/HomePageSkeleton";
+import ChatWidget from "@/app/components/ChatWidget";
 
 export default function HomePage() {
   const [isFetching, setIsFetching] = useState(true);
@@ -101,6 +102,9 @@ export default function HomePage() {
       </div>
 
       <Newsletter />
+
+      {/* Floating chat widget (global context) */}
+      <ChatWidget contextType="global" />
     </main>
   );
 }
