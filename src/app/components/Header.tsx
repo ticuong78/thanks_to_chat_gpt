@@ -29,6 +29,14 @@ export function Header() {
               >
                 Home
               </button>
+              <button
+                onClick={() => router.push("/portfolio")}
+                className={`text-gray-600 hover:text-gray-900 transition ${
+                  pathname?.startsWith("/portfolio") ? "text-gray-900" : ""
+                }`}
+              >
+                Portfolio
+              </button>
               <a
                 href="#"
                 className="text-gray-600 hover:text-gray-900 transition"
@@ -47,12 +55,14 @@ export function Header() {
               >
                 Travel
               </a>
-              <a
-                href="#"
-                className="text-gray-600 hover:text-gray-900 transition"
+              <button
+                onClick={() => router.push("/about")}
+                className={`text-gray-600 hover:text-gray-900 transition ${
+                  pathname?.startsWith("/about") ? "text-gray-900" : ""
+                }`}
               >
                 About
-              </a>
+              </button>
             </nav>
           </div>
 
